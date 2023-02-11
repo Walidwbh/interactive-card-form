@@ -20,7 +20,10 @@
                     0000 0000 0000 0000
                 </div>
                 <div class="cardholder-name">jane applessed</div>
-                <div class="exp-date">00/00</div>
+                <div class="exp-date">
+                    <!-- 00/00 -->
+                <span class="month">00</span>/<span class="year">00</span>
+                </div>
             </div>
             <div class="back-card">
                 <div class="cvc">000</div>
@@ -29,23 +32,31 @@
             <img src="images/bg-card-back.png" alt=""> -->
         </div>
         <div class="right-side">
-            <div class="form">
+            <form class="form">
                 <label for="name">cardholder name</label>
                 <input type="text" name="name" id="name" placeholder="e.g Jane Appleseed">
-                <label for="number">cardholder name</label>
-                <input type="number" name="number" id="number" placeholder="e.g 1234 5678 9123 0000">
-                <div class="horizontal">
+                <div class="error"></div>
+                <label for="number">card number</label>
+                <input type="text" name="number" id="number" placeholder="e.g 1234 5678 9123 0000">
+                <div class="error"></div>
+                <label>exp.date (mm/yy)</label>
+                <!-- <div class="horizontal">
                     <div class="date">
-                        <label>exp.date (mm/yy)</label>
-                        <input type="text" name="month" id="month" maxlength="2">
-                        <input type="text" name="year" id="year" maxlength="2">
+                        <input type="number" name="month" id="month" step="1" min="1" max="12" placeholder="MM"><br>
+                        <input type="number" name="year" id="year" step="1" min="23" max="38" placeholder="YY">
                     </div>
                     <div class="cvc">
-                        <input type="number" name="cvc" id="cvc">
+                        <input type="number" name="cvc" id="cvc" maxlength="3" placeholder="e.g. 123">
+                        <div class="error"></div>
                     </div>
+                </div> -->
+                <div class="horizontal">
+                    <input type="number" name="month" id="month" step="1" min="1" max="12" placeholder="MM"><br>
+                    <input type="number" name="year" id="year" step="1" min="23" max="38" placeholder="YY">
+                    <input type="number" name="cvc" id="cvc" maxlength="3" placeholder="e.g. 123">
                 </div>
-                <button>confirm</button>
-            </div>
+                <button type="submit">confirm</button>
+            </form>
         </div>
     </div>
     <script src="js/main.js"></script>
