@@ -1,11 +1,20 @@
 // real time inputs to the cards
-const holderName = document.querySelector("input[name=name]");
-const cardNumber = document.querySelector("input[name=number]");
-const month = document.querySelector("input[name=month]");
-const year = document.querySelector("input[name=year]");
-const cvc = document.querySelector("input[name=cvc]");
-console.log(cvc)
+const inputs = document.querySelectorAll("input");
+const outputs = document.querySelectorAll(".left-side #output");
+outputs.forEach((output, index)=>{
+    realTime(inputs[index], output);
+})
+//------------------------------------------
 const form = document.querySelector("form");
+form.onsubmit = function(e){
+    inputs.forEach((input, index)=>{
+        if(!checkValidity(input)){
+            e.preventDefault()
+        }
+    });
+    e.preventDefault()
+}
+//------------------------------------------------
 function realTime(input, output){
     let oldContent = output.innerHTML;
     input.onkeyup = function() {
@@ -16,11 +25,6 @@ function realTime(input, output){
         output.innerHTML = oldContent;
     }
 }
-realTime(holderName, document.querySelector(".front-card .cardholder-name"));
-realTime(cardNumber, document.querySelector(".front-card .card-number"));
-realTime(month, document.querySelector(".front-card .exp-date .month"));
-realTime(year, document.querySelector(".front-card .exp-date .year"));
-realTime(cvc, document.querySelector(".back-card .cvc"));
 function checkValidity(element){
     if(!element.value){
         element.nextElementSibling.innerHTML = "Can't be blank";
@@ -30,22 +34,5 @@ function checkValidity(element){
         element.nextElementSibling.innerHTML ="";
         element.classList.remove("error")
         return true
-    }
-}
-form.onsubmit = function(event){
-    if(!checkValidity(holderName)){
-        event.preventDefault()
-    }else if(!checkValidity(cardNumber)){
-        event.preventDefault()
-    }else if(isNaN(cardNumber.value)){
-        cardNumber.classList.add("error");
-        cardNumber.nextElementSibling.innerHTML="Wrong format, numbers only";
-        event.preventDefault()
-    }else if(!checkValidity(month)){
-        event.preventDefault()
-    }else if(!checkValidity(year)){
-        event.preventDefault()
-    }else if(!checkValidity(cvc)){
-        event.preventDefault()
     }
 }
